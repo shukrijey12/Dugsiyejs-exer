@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+
+        
+// combination of for of and for in loop
+let students2=[
+    {
+        name:"shukri",
+        age:24,
+        city:"caabudwaaq"
+    }, 
+    console.log("------------------------------"),
+    {
+        name:"xaliima",
+        age:19,
+        city:"mogadishu"
+    }
+];
+for(let student of students2){
+    for(let key in student){
+        console.log(key + ":" + student[key]);
+    }
+}
+
+    </script>
+    
+</body>
+</html>
