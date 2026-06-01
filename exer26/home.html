@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //syncronous programming
+        function  firstblocking(callback){
+            alert("first blocking function");
+            callback();
+        }
+        console.log("before calling first blocking function");
+        console.log("after calling first blocking function");
+        //asyncronous programming
+        function secondblocking(callback){
+            setTimeout(function(){
+                console.log("second blocking function");
+                callback();
+            },4000);
+        }
+        secondblocking(function(){
+    console.log("callback function");
+});
+        
+       
+
+    </script>
+</body>
+</html>

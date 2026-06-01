@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        array1=[1,2,3];
+        array2=[4,5,6];
+        const allarray=[...array1,...array2];
+        console.log(".........");
+        console.log(allarray);
+
+
+
+        // reset parameter
+        function multiplay(...numbers){
+            return numbers.reduce((total, num) => total * num, 1);
+          
+
+        }
+        console.log(multiplay(1,2,3,4));
+    </script>
+</body>
+</html>
