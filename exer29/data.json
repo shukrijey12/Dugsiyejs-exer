@@ -1,0 +1,15 @@
+{
+    "id": 1,
+    "name": "ahmed",
+    "age": 25,
+    "city": "cairo" ,
+    "country": "egypt",
+    "skills": ["python", "javascript", "html", "css"],
+    "education": {
+        "degree": "bachelor",
+        "major": "computer science",
+        "university": "cairo university",
+        "graduation_year": 2020
+    }
+
+}
