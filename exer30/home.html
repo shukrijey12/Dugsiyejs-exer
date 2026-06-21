@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+
+        
+
+        
+        
+         function add(a, b) {
+        return a + b;
+    }
+
+    function sub(a, b) {
+        return a - b;
+    }
+
+    function mul(a, b) {
+        return a * b;
+    }
+
+    function div(a, b) {
+        return a / b;
+    }
+
+    function operate(a, b, callback) {
+        return callback(a, b);
+    }
+
+    console.log("addition:", operate(10, 5, add));
+    console.log("subtraction:", operate(10, 5, sub));
+    console.log("multiplication:", operate(10, 5, mul));
+    console.log("division:", operate(10, 5, div));
+        
+        
+        
+        
+        
+
+
+
+    </script>
+    
+</body>
+</html>
