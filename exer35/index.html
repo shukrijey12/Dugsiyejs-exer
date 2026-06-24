@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Changer</title>
+</head>
+<body>
+
+    <img
+        id="myImage"
+        src="https://images.unsplash.com/photo-1773332598289-ed0444ad1d6f?w=600&auto=format&fit=crop&q=60"
+        alt="Image"
+        width="500"
+    >
+
+    <br><br>
+
+    <button onclick="changeImage()">Change Image</button>
+
+    <script>
+
+        const image = document.querySelector("#myImage");
+
+        function changeImage() {
+
+            const newImageUrl = prompt("Enter the new image URL:");
+
+            if (newImageUrl) {
+                image.src = newImageUrl;
+            }
+
+            const imageWidth = prompt("Enter image width (px):");
+
+            if (imageWidth) {
+                image.style.width = imageWidth + "px";
+            }
+
+            const imageHeight = prompt("Enter image height (px):");
+
+            if (imageHeight) {
+                image.style.height = imageHeight + "px";
+            }
+
+            const borderColor = prompt("Enter border color:");
+
+            const borderSize = prompt("Enter border size (px):");
+
+            if (borderColor && borderSize) {
+                image.style.border = `${borderSize}px solid ${borderColor}`;
+            }
+
+            const borderRadius = prompt("Enter border radius (%):");
+
+            if (borderRadius) {
+                image.style.borderRadius = borderRadius + "%";
+            }
+
+            image.style.boxShadow = "0 4px 8px rgba(0,0,0,0.3)";
+            image.style.transition = "0.3s";
+        }
+
+    </script>
+
+</body>
+</html>
