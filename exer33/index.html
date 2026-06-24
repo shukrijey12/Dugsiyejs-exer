@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <header  >
+        hey welcome to my website
+    </header>
+    <h3>
+        this is a simple website to practice DOM manipulation. 
+    </h3>
+    <div class="pa"><p > this  is my first paragraph</p></div>
+   <button id="btn">click me</button>
+
+   <script>
+    const btn=document.getElementById("btn");
+    btn.addEventListener("click", function(){
+        const para=document.querySelector(".pa p");
+        para.textContent="tani waa paragraph kaygii ugu horeyey oo aan badalo  anoo isticmaalaya Dom";
+    })
+    const header=document.querySelector("header");
+    header.textContent="hey welcome to my website, this is a simple website to practice DOM manipulation";
+    const h3=document.querySelector("h3");
+
+   </script>
+    
+    
+</body>
+</html>

@@ -1,29 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DOM Practice</title>
+    <style>
+        .active{
+            background-color: lightblue;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1 id="about"> about me</h1>
-    <p>my name is  shukri  j  . I live in somalia capital city which called mogadishu.
-        Iam one of  students  at dugsiiye institute of technology .  i have passion for coding  and i want ti be  a software developer in the near future.
-    </p>
-    <div class="hobies">
-        <h2> my hobies </h2>
-        <p> i have many hobies but the most important one is coding  and reading . i like coding because it is a way to express my creativity and solve problems. .</p>
+
+    <h1 id="title">Welcome to DOM</h1>
+
+    <input type="text" id="userInput" placeholder="Enter your name">
+
+    <button id="changeBtn">Change Title</button>
+    <button id="addBtn">Add Paragraph</button>
+    <button id="deleteBtn">Delete Paragraph</button>
+    <button id="toggleBtn">Toggle Color</button>
+
+    <div id="container">
+        <p id="para">This is the first paragraph.</p>
     </div>
-    <script>
-        const about= document.querySelector("#about");
-        const hobies=document.querySelectorAll(".hobies");
 
+<script>
 
+// Selecting Elements
+const title = document.getElementById("title");
+const para = document.querySelector("#para");
+const container = document.querySelector("#container");
+const input = document.querySelector("#userInput");
 
-    </script>
-    
+// Change Text
+document.querySelector("#changeBtn").addEventListener("click", function(){
 
+    const name = input.value;
 
-    
+    title.textContent = "Hello " + name;
+
+});
+
+// Create New Element
+document.querySelector("#addBtn").addEventListener("click", function(){
+
+    const newPara = document.createElement("p");
+
+    newPara.textContent = "New paragraph added!";
+
+    container.appendChild(newPara);
+
+});
+
+// Remove Element
+document.querySelector("#deleteBtn").addEventListener("click", function(){
+
+    const lastParagraph = container.lastElementChild;
+
+    if(lastParagraph){
+        lastParagraph.remove();
+    }
+
+});
+
+// Change Style & Class
+document.querySelector("#toggleBtn").addEventListener("click", function(){
+
+    container.classList.toggle("active");
+
+});
+
+// innerHTML Example
+container.innerHTML += "<h3>DOM Practice Section</h3>";
+
+</script>
+
 </body>
 </html>
