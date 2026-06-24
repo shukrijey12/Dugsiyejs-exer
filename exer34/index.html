@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Hello, World!</h1>
+    <ul>
+        <li>shaqada koobaad</li>
+        <li>shaqada labaad</li>
+        <li> shaqada sadexaad</li>
+        <li> shaqda afraad</li>
+         
+
+    </ul>
+    <button onclick="addnew()">Click me</button>
+    <button onclick="remove()">Remove</button>
+    <script>
+        function addnew(){
+            const ul =document. querySelector("ul")
+            const newli=document.createElement("li");
+            newli.textContent="this is a new list item";
+            ul.appendChild(newli);
+        }
+        function remove(){
+            const ul =document. querySelector("ul")
+            const lastli=ul.lastElementChild;
+            if(lastli){
+                ul.removeChild(lastli);
+            } else{
+                alert("No more items to remove!");
+            }
+        }
+    </script>
+     
+
+   
+
+    
+
+</body>
+</html>
