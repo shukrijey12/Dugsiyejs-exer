@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Blog App</title>
+    <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:40px auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+    color:#222;
+    font-size:40px;
+}
+
+/* ================= FORM ================= */
+
+.form{
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    margin-bottom:40px;
+}
+
+.form input,
+.form textarea{
+    width:100%;
+    padding:14px;
+    margin:12px 0;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+    transition:.3s;
+}
+
+.form input:focus,
+.form textarea:focus{
+    border-color:#0077ff;
+    box-shadow:0 0 8px rgba(0,119,255,.2);
+}
+
+.form textarea{
+    resize:vertical;
+    min-height:150px;
+}
+
+.or{
+    text-align:center;
+    color:#777;
+    margin:10px 0;
+}
+
+/* Preview Image */
+
+#preview{
+    display:none;
+    width:300px;
+    height:200px;
+    object-fit:contain;
+    margin:15px auto;
+    border:2px solid #ddd;
+    border-radius:10px;
+    background:#fafafa;
+    padding:5px;
+}
+
+/* Button */
+
+#addBtn{
+    width:100%;
+    padding:15px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+#addBtn:hover{
+    background:#1d4ed8;
+}
+
+/* ================= POSTS ================= */
+
+.posts h2{
+    margin-bottom:20px;
+    color:#222;
+}
+
+#postContainer{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+    gap:25px;
+}
+
+/* ================= CARD ================= */
+
+.card{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+/* Image */
+
+.card-image{
+    width:100%;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    background:#eee;
+}
+
+/* Body */
+
+.card-body{
+    padding:20px;
+}
+
+.card-title{
+    font-size:24px;
+    color:#222;
+    margin-bottom:10px;
+}
+
+.card-description{
+    color:#555;
+    line-height:1.7;
+    margin-bottom:15px;
+
+    display:-webkit-box;
+    -webkit-line-clamp:4;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+
+.card-date{
+    display:block;
+    color:#999;
+    margin-bottom:20px;
+}
+
+/* Buttons */
+
+.buttons{
+    display:flex;
+    gap:10px;
+}
+
+.editBtn,
+.deleteBtn{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    color:#fff;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.editBtn{
+    background:#f59e0b;
+}
+
+.editBtn:hover{
+    background:#d97706;
+}
+
+.deleteBtn{
+    background:#ef4444;
+}
+
+.deleteBtn:hover{
+    background:#dc2626;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+    .container{
+        width:95%;
+    }
+
+    h1{
+        font-size:32px;
+    }
+
+    #preview{
+        width:100%;
+        height:220px;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .card-title{
+        font-size:20px;
+    }
+}
+
+    </style>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Simple Blog Post</h1>
+
+    <!-- ================= Form ================= -->
+
+    <div class="form">
+
+        <input
+            type="text"
+            id="title"
+            placeholder="Enter Post Title">
+
+        <input
+            type="text"
+            id="imageUrl"
+            placeholder="Paste Image URL (Optional)">
+
+        <p class="or">OR</p>
+
+        <input
+            type="file"
+            id="imageFile"
+            accept="image/*">
+
+        <img id="preview" src="" alt="">
+
+        <textarea
+            id="description"
+            placeholder="Write your blog..."
+            rows="6"></textarea>
+
+        <button id="addBtn">
+            <i class="fa-solid fa-plus"></i>
+            Add Post
+        </button>
+
+    </div>
+
+    <!-- ============== Posts ============== -->
+
+    <div class="posts">
+
+        <h2>All Blog Posts</h2>
+
+        <div id="postContainer">
+
+            <!-- JavaScript ayaa halkan ku soo dari doona posts -->
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= Template ================= -->
+
+<template id="postTemplate">
+
+    <div class="card">
+
+        <img class="card-image" src="" alt="">
+
+        <div class="card-body">
+
+            <h2 class="card-title"></h2>
+
+            <p class="card-description"></p>
+
+            <small class="card-date"></small>
+
+            <div class="buttons">
+
+                <button class="editBtn">
+                    <i class="fa-solid fa-pen"></i>
+                    Edit
+                </button>
+
+                <button class="deleteBtn">
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</template>
+
+
+<script>
+    const title = document.getElementById("title");
+const imageUrl = document.getElementById("imageUrl");
+const imageFile = document.getElementById("imageFile");
+const description = document.getElementById("description");
+const addBtn = document.getElementById("addBtn");
+const preview = document.getElementById("preview");
+const postContainer = document.getElementById("postContainer");
+
+let posts = JSON.parse(localStorage.getItem("posts")) || [];
+let editIndex = -1;
+let imageData = "";
+
+// COMPUTERKA INA LAGA SOO GALIN KARO
+imageFile.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            imageData = e.target.result;
+            preview.src = imageData;
+            preview.style.display = "block";
+        };
+
+        reader.readAsDataURL(file);
+    }
+});
+
+// Show image preview from URL
+imageUrl.addEventListener("input", function () {
+    if (this.value.trim() !== "") {
+        preview.src = this.value;
+        preview.style.display = "block";
+    }
+});
+
+// Save posts
+function savePosts() {
+    localStorage.setItem("posts", JSON.stringify(posts));
+}
+
+// Display posts
+function displayPosts() {
+
+    postContainer.innerHTML = "";
+
+    posts.forEach((post, index) => {
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+            <img class="card-image" src="${post.image}">
+            <div class="card-body">
+
+                <h2 class="card-title">${post.title}</h2>
+
+                <p class="card-description">
+                    ${post.description}
+                </p>
+
+                <small class="card-date">
+                    ${post.date}
+                </small>
+
+                <div class="buttons">
+
+                    <button class="editBtn" onclick="editPost(${index})">
+                        Edit
+                    </button>
+
+                    <button class="deleteBtn" onclick="deletePost(${index})">
+                        Delete
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        postContainer.appendChild(card);
+
+    });
+
+}
+
+// Add Post
+addBtn.addEventListener("click", function () {
+
+    if (
+        title.value.trim() === "" ||
+        description.value.trim() === ""
+    ) {
+        alert("Fill all fields");
+        return;
+    }
+
+    let image = imageUrl.value.trim();
+
+    if (imageData !== "") {
+        image = imageData;
+    }
+
+    if (image === "") {
+        image = "https://via.placeholder.com/600x350";
+    }
+
+    const post = {
+
+        title: title.value,
+
+        description: description.value,
+
+        image: image,
+
+        date: new Date().toLocaleString()
+
+    };
+
+    if (editIndex === -1) {
+
+        posts.push(post);
+
+    } else {
+
+        posts[editIndex] = post;
+        editIndex = -1;
+        addBtn.textContent = "Add Post";
+
+    }
+
+    savePosts();
+    displayPosts();
+    clearForm();
+
+});
+
+// Delete
+function deletePost(index) {
+
+    if (confirm("Delete this post?")) {
+
+        posts.splice(index, 1);
+
+        savePosts();
+
+        displayPosts();
+
+    }
+
+}
+
+// Edit
+function editPost(index) {
+
+    const post = posts[index];
+
+    title.value = post.title;
+
+    description.value = post.description;
+
+    imageUrl.value = post.image;
+
+    preview.src = post.image;
+
+    preview.style.display = "block";
+
+    imageData = post.image;
+
+    editIndex = index;
+
+    addBtn.textContent = "Update Post";
+
+}
+
+// Clear Form
+function clearForm() {
+
+    title.value = "";
+
+    description.value = "";
+
+    imageUrl.value = "";
+
+    imageFile.value = "";
+
+    preview.src = "";
+
+    preview.style.display = "none";
+
+    imageData = "";
+
+}
+
+displayPosts();
+</script>
+
+</body>
+</html>
