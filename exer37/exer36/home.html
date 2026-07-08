@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Color Picker</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    padding:20px;
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+#preview{
+    width:300px;
+    height:300px;
+    border:2px solid black;
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    font-weight:bold;
+    background:#ffffff;
+}
+
+button{
+    padding:8px 20px;
+    margin-left:10px;
+    cursor:pointer;
+}
+
+#history{
+    margin-top:20px;
+}
+
+#history p{
+    font-size:22px;
+    margin-top:8px;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Interactive Color Picker</h1>
+
+<label for="colorPicker">Choose a color:</label>
+<input type="color" id="colorPicker" value="#ffffff">
+
+<button id="clear-color">Clear</button>
+
+<div id="preview">
+    Color Preview
+</div>
+
+<div id="history">
+    <h2>Color History</h2>
+    <p id="colorCode">#ffffff</p>
+</div>
+
+<script>
+
+const colorPicker = document.getElementById("colorPicker");
+const preview = document.getElementById("preview");
+const colorCode = document.getElementById("colorCode");
+const clearButton = document.getElementById("clear-color");
+
+colorPicker.addEventListener("input", function(){
+
+    // Midabka Preview-ga
+    preview.style.backgroundColor = colorPicker.value;
+
+    // HEX Code-ka
+    colorCode.textContent = colorPicker.value;
+
+});
+
+// Clear Button
+clearButton.addEventListener("click", function(){
+
+    preview.style.backgroundColor = "#ffffff";
+    colorCode.textContent = "#ffffff";
+    colorPicker.value = "#ffffff";
+
+});
+
+</script>
+
+</body>
+</html>
